@@ -25,8 +25,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
 	}
 
 	/**
@@ -35,16 +34,16 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("in post");
+		// System.out.println("in post");
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-
-		System.out.println(request.getParameter("action"));
-
+		// System.out.println(request.getParameter("action"));
 		if (request.getParameter("action") != null) {
-			System.out.println("in login");
-			String name = request.getParameter("username");
+			// System.out.println("in login");
+
+			String email = request.getParameter("email");
 			String password = request.getParameter("userpass");
+			
 			/*
 			 * getSession(false) will check existence of session. If session
 			 * exists, then it returns the reference of that session object, if
@@ -52,21 +51,19 @@ public class LoginServlet extends HttpServlet {
 			 */
 			HttpSession session = request.getSession();
 			System.out.println("session  " + session);
-			// set new session by name oblect
+			// set new session by name object
 			if (session != null) {
-				session.setAttribute("name", name);
-				// System.out.println("in if ");
-				System.out.println("session  " + session);
+				session.setAttribute("email", email);
+				
 			}
-
-			if (LoginDao.validate(name, password)) {
-				System.out.println("session  " + session);
+			String nameResult=LoginDao.validate(email, password);
+			session.setAttribute("name",nameResult);
+			if (nameResult!=null) {
 				RequestDispatcher requestDipatcher = request.getRequestDispatcher("welcome.jsp");
 				requestDipatcher.forward(request, response);
-				System.out.println("session  " + session);
+				
 			} else {
-				System.out.println("else login dao false session  " + session);
-				out.print("<p style=\"color:red\">Sorry username and password error!!!</p>");
+				out.print("<p style=\"color:red\">Enter proper username and password !!!</p>");
 				RequestDispatcher requestDipatcher = request.getRequestDispatcher("index.jsp");
 				requestDipatcher.include(request, response);
 			}

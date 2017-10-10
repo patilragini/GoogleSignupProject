@@ -6,56 +6,61 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.servlet.http.HttpSession;
+
 public class LoginDao {
-	public static boolean validate(String name, String password) {
+	public static String validate(String email, String password) {
 		boolean status = false;
-		Connection conn = null;
-		PreparedStatement pst = null;
-		ResultSet rs = null;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
 
 		String url = "jdbc:mysql://localhost:3306/";
 		String dbName = "google_signup";
 		String driver = "com.mysql.jdbc.Driver";
 		String userNameDB = "root";
 		String passwordDB = "root";
-
+		
 		try {
 			Class.forName(driver).newInstance();
-			conn = DriverManager.getConnection(url + dbName, userNameDB, passwordDB);
+			connection = DriverManager.getConnection(url + dbName, userNameDB, passwordDB);
 			System.out.println("in logindao!!!");
-			pst = conn.prepareStatement("select * from registration where name=? and password=?");
-			pst.setString(1, name);
-			pst.setString(2, password);
-			rs = pst.executeQuery();
-			status = rs.next();
-			System.out.println("status " + status + " \n number of row affected : " + rs);
+			preparedStatement = connection.prepareStatement("select * from registration where email_id=? and password=?");
+			preparedStatement.setString(1, email);
+			preparedStatement.setString(2, password);
+			resultSet = preparedStatement.executeQuery();
+			status = resultSet.next();			
+			System.out.println("status " + status + " \n number of row affected : " + resultSet);
+			String nameResult=resultSet.getString(2);
+			System.out.println(nameResult);
+			return nameResult;
 
 		} catch (Exception e) {
 			System.out.println(e);
 		} finally {
-			if (conn != null) {
+			if (connection != null) {
 				try {
-					conn.close();
+					connection.close();
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}
-			if (pst != null) {
+			if (preparedStatement != null) {
 				try {
-					pst.close();
+					preparedStatement.close();
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}
-			if (rs != null) {
+			if (resultSet != null) {
 				try {
-					rs.close();
+					resultSet.close();
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}
 		}
-		return status;
+		return null;
 	}
 
 }

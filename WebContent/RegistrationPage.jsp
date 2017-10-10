@@ -4,47 +4,58 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>User Data</title>
+<title>Registration Page</title>
+<script type="text/javascript" src="Script/loginScript.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/registrationPage.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<style>
-div.ex {
-	height: 518px;
-	width: 300px;
-	background-color: white;
-}
-</style>
-<body bgcolor="lavender">
-	<h1 align="center">Registration Form</h1>
-	<div class="ex" style="width: 365px; height: 294px;">
-		<form action="RegisterServlet" method="post">
-			<fieldset style="width: 359px; height: 600px;">
-				<table align="center" style="width: 300px; height: 161px;">
-					<tr>
-						<td>Full Name</td>
-						<td><input type="text" name="name" required /></td>
-					</tr>
-					<tr>
-						<td>Email id</td>
-						<td><input type="text" name="email" required /></td>
-					</tr>
-					<tr>
-						<td>PhoneNumber</td>
-						<td><input type="number" name="phoneNumber" required /></td>
-					</tr>
-					<tr>
-						<td>Password</td>
-						<td><input type="password" name="password" required /></td>
-					</tr>
-					<tr>
-						<td><input type="submit" value="Register" align="bottom" /></td>
-						<td ><a  href="/GoogleSignupProject/index.jsp">click here to go back.</a></td>
-					</tr>
 
-				</table>
+<body>
+	<div class="panel panel-primary">
+		<div class="panel-heading">*</div>
+		<!-- can give button here in * -->
+		<div class="panel-body">
+			<h2 align="middle">Registration Form</h2>
+			<div class="container">
 
-			</fieldset>
-		</form>
-
+				<fieldset>
+					<form action="RegisterServlet" method="post" name="myform"
+						onsubmit="return validateform();">
+						<div class="form-group">
+							<label>Full Name</label> <input type="text" name="name"
+								class="form-control" placeholder="Enter User Name" />
+						</div>
+						<div class="form-group">
+							<label>Email id</label><input type="email" name="email"
+								class="form-control" placeholder="Enter EmailId" />
+						</div>
+						<div class="form-group">
+							<label>PhoneNumber</label><input type="long" name="phoneNumber"
+								class="form-control" placeholder="Enter 10 digit phone number" />
+						</div>
+						<div class="form-group">
+							<label> Password</label><input type="password" name="password"
+								class="form-control" placeholder="Enter password" />
+						</div>
+						<div class="form-group">
+							<br> <input type="submit" value="Register" />
+						</div>
+						<br>
+						<div class="form-group">
+							<a href="/GoogleSignupProject/index.jsp">Alreay have an
+								account</a>
+						</div>
+					</form>
+				</fieldset>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

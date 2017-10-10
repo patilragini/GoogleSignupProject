@@ -3,48 +3,49 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Login Application</title>
+<title>Login Page</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/index.css"> 
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<style>
-div {
-	height: 518px;
-	width: 300px;
-	background-color: white;
-}
-</style>
-<body bgcolor="lavender">
-	<form action="loginServlet" method="post">
-		<fieldset style="width: 359px; height: 600px;">
-			<br>
-			<div>
-				<h2>Sign in</h2>
-				<h3>
-					to continue to Gmail<br>
-					<br>
-					<br>
-				</h3>
 
-				<table style="width: 300px; height: 161px;">
-					<tr>
-						<td>User ID</td>
-						<td><input type="text" name="username" style="width: 153px;" /></td>
-					</tr>
-					<tr>
-						<td>Password</td>
-						<td><input type="password" name="userpass"
-							style="width: 153px;" /></td>
-					</tr>
-					<tr>
-						<td ><a  href="/GoogleSignupProject/RegistrationPage.jsp">Signup</a></td>
-						
-						<td style="width: 129px;"><input type="submit" 
-							value="Login" name="action" style="width: 81px; background-color: SkyBlue" />
-					</tr>
-				</table>
-			</div>
+
+<body>
+	<div class="container">
+		<fieldset>
+			<img src="" alt="Google Logo" class="googleimg" align="left">
+			<h2>Sign in</h2>
+			<h3>to continue to Gmail</h3>
+			<form action="loginServlet" method="post">
+				<div class="form-group">
+
+					<div>
+						<br>
+						<div class="form-group">
+							<label>Email Id</label> <input type="text" name="email"
+								placeholder="Email Id" class="form-control" />
+						</div>
+						<br>
+						<div class="form-group">
+							<label>Password:</label> <input type="password" name="userpass"
+								class="form-control" placeholder="Enter Password" />
+						</div>
+						<br>
+						<div class="form-group">
+							<a href="/GoogleSignupProject/RegistrationPage.jsp">Create
+								account</a> <input type="submit" class="btn btn-default"
+								value="Login" name="action" />
+						</div>
+					</div>
+				</div>
+			</form>
+
 		</fieldset>
-	</form>
+	</div>
 </body>
 </html>

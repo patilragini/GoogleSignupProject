@@ -1,6 +1,7 @@
 package com.bridgelabz.Controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -41,24 +42,33 @@ public class RegisterServlet extends HttpServlet {
 
 		registration.setName(request.getParameter("name"));
 		registration.setPassword(request.getParameter("password"));
-		registration.setphoneNumber(Integer.parseInt(request.getParameter("phoneNumber")));
+
+		System.out.println(request.getParameter("phoneNumber"));		
+		registration.setphoneNumber( Long.parseLong((request.getParameter("phoneNumber"))));
 		registration.setEmail(request.getParameter("email"));
 
-		System.out.println("in register servlet!!!"+registration.getEmail() + "  " + registration.getName() + " " + registration.getphoneNumber()
-				+ "  " + registration.getPassword());
+		System.out.println("in register servlet!!!" + registration.getEmail() + "  " + registration.getName() + " "
+				+ registration.getphoneNumber() + "  " + registration.getPassword());
 
-				try {
-					status = RegisterDao.register(registration);
-				} catch (ClassNotFoundException e) {		
-					e.printStackTrace();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-					
-		if (status==true) {
+		try {
+			status = RegisterDao.register(registration);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		if (status == true) {
 			System.out.println("registration successful!!!");
 			RequestDispatcher requestDipatcher = request.getRequestDispatcher("index.jsp");
-			requestDipatcher.forward(request, response);			
+			requestDipatcher.forward(request, response);
+		} else {
+			response.setContentType("text/html");
+			System.out.println("existing emailid");
+			PrintWriter out = response.getWriter();
+			out.print("<p style=\"color:red\">Account exists enter different EmailId</p>");
+			RequestDispatcher requestDipatcher = request.getRequestDispatcher("RegistrationPage.jsp");
+			requestDipatcher.forward(request, response);
 		}
 	}
 

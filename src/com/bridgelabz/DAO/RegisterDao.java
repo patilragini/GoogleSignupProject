@@ -13,8 +13,8 @@ public class RegisterDao {
 	public static boolean register(Registration user) throws SQLException, ClassNotFoundException {
 		System.out.println("Jdbc Database Meta Data");
 		Class.forName("com.mysql.jdbc.Driver");
-		System.out.println("dao register details !!! :\n" + user.getName() + " " + user.getEmail() + " "
-				+ user.getPassword() + "  " + user.getphoneNumber());
+		/*System.out.println("dao register details !!! :\n" + user.getName() + " " + user.getEmail() + " "
+				+ user.getPassword() + "  " + user.getphoneNumber());*/
 
 		Connection connection = null;
 		PreparedStatement pst = null;
@@ -25,24 +25,25 @@ public class RegisterDao {
 		String userName = "root";
 		String password = "root";
 		connection = DriverManager.getConnection(url, userName, password);
-	//	System.out.println("connction done");
+	System.out.println("connction done");
 		try {
 			String SQL = "insert into registration (name,email_id,password,phone_number) values(?,?,?,?)";
 			System.out.println("connection done!!!!!!!!");
+			
 			java.sql.PreparedStatement preparedStatement = connection.prepareStatement(SQL);
 			preparedStatement.setString(1, user.getName());
 			preparedStatement.setString(2, user.getEmail());
 			preparedStatement.setString(3, user.getPassword());
-			preparedStatement.setInt(4, user.getphoneNumber());
+			preparedStatement.setLong(4, user.getphoneNumber());
 			int rows = preparedStatement.executeUpdate();
 			System.out.println(rows + " records affected");
 			return true;
-		} catch (Exception e) {
+		} catch (Exception e) {	
+			
 			e.printStackTrace();
 			System.out.println("catch");
+			return false;
 		}
-		return false;
-
 	}
 
 }
