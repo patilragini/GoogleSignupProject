@@ -21,6 +21,7 @@
 				<h4>
 					Hello,
 					<%= session.getAttribute("name")%>
+					<br>
 					<%=session.getAttribute("email")%></h4>
 				<br>
 				<form action="logoutServlet" method="post">

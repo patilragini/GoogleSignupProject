@@ -7,7 +7,7 @@ function validateform() {
 		if (name == null || name == "") {
 			alert("Name can't be blank !!!");
 			return false;
-		}else if(name!=null){
+		}/*else if(name!=null){
 			var symbols=/^[a-zA-Z]+$/;
 			if(name.value.match(symbols))
 				return true;
@@ -15,8 +15,8 @@ function validateform() {
 				alert("no symbols and numbers allowed!!!");
 				return false;
 			}
-			return true;
-			}		
+			return false;
+			}*/		
 		else if (email == null || email == "") {
 			alert("invalid email !!!");
 			return false;

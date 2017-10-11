@@ -1,8 +1,10 @@
-/**
- * purpose :getter setter for registration 
- * Get name email phonenumber password and set values
- */
-
+/****************************************************************************** 
+ *  @author  Ragini Patil
+ *  @version 1.0
+ *  @since   5-10-2017
+ *	@purpose getter setter for registration 
+ *  Get name email phonenumber password and set values
+ ******************************************************************************/
 package com.bridgelabz.Component;
 
 public class Registration {

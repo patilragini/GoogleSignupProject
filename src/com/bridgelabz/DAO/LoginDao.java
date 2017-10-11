@@ -6,9 +6,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.servlet.http.HttpSession;
 
 public class LoginDao {
+	 /**
+	 * @param email
+	 * @param password
+	 * @return name
+	 *         <p>
+	 *         This function accepts user email id and password checks in
+	 *         database if exist or not. If the user email id and password is
+	 *         found in database ,it will return name of user.
+	 */
+	
 	public static String validate(String email, String password) {
 		boolean status = false;
 		Connection connection = null;
@@ -24,19 +33,19 @@ public class LoginDao {
 		try {
 			Class.forName(driver).newInstance();
 			connection = DriverManager.getConnection(url + dbName, userNameDB, passwordDB);
-			System.out.println("in logindao!!!");
+			//System.out.println("in logindao!!!");
 			preparedStatement = connection.prepareStatement("select * from registration where email_id=? and password=?");
 			preparedStatement.setString(1, email);
 			preparedStatement.setString(2, password);
 			resultSet = preparedStatement.executeQuery();
 			status = resultSet.next();			
-			System.out.println("status " + status + " \n number of row affected : " + resultSet);
+			//System.out.println("status " + status + " \n number of row affected : " + resultSet);
 			String nameResult=resultSet.getString(2);
-			System.out.println(nameResult);
+			//System.out.println(nameResult);
 			return nameResult;
 
 		} catch (Exception e) {
-			System.out.println(e);
+			//System.out.println(e);
 		} finally {
 			if (connection != null) {
 				try {

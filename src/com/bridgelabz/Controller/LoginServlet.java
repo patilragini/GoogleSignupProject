@@ -1,3 +1,14 @@
+/********************************************************************************** 
+ *  @author  Ragini Patil
+ *  @version 1.0
+ *  @since   5-10-2017
+ *	@purpose LoginServlet extends http servlet.
+ *			 Has goPost overridden method which accepts email and password given
+ *			 by user in login page & it is resonsible to check if found valid 
+ *			 dispatch welcome page else if invalid user redirect to login page with error.
+ *			 Also check existence of session. If session exists, then it returns 
+ *			 the reference of that session object.
+ ***********************************************************************************/
 package com.bridgelabz.Controller;
 
 import java.io.IOException;
@@ -31,6 +42,7 @@ public class LoginServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
+	 *      <p> this   
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -50,20 +62,24 @@ public class LoginServlet extends HttpServlet {
 			 * not, this methods will return null.
 			 */
 			HttpSession session = request.getSession();
-			System.out.println("session  " + session);
+			//System.out.println("session  " + session);
 			// set new session by name object
 			if (session != null) {
 				session.setAttribute("email", email);
 				
 			}
 			String nameResult=LoginDao.validate(email, password);
+			
 			session.setAttribute("name",nameResult);
-			if (nameResult!=null) {
+			if (nameResult!=null) {	
+				session.removeAttribute("errorLogin");	
 				RequestDispatcher requestDipatcher = request.getRequestDispatcher("welcome.jsp");
 				requestDipatcher.forward(request, response);
 				
 			} else {
-				out.print("<p style=\"color:red\">Enter proper username and password !!!</p>");
+				String errorMsg="Invalid username or password !!!";
+				session.setAttribute("errorLogin",errorMsg);
+				//out.print("<p style=\"color:red\">Enter proper username and password !!!</p>");
 				RequestDispatcher requestDipatcher = request.getRequestDispatcher("index.jsp");
 				requestDipatcher.include(request, response);
 			}

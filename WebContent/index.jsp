@@ -8,10 +8,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/index.css"> 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 
@@ -35,6 +31,11 @@
 							<label>Password:</label> <input type="password" name="userpass"
 								class="form-control" placeholder="Enter Password" />
 						</div>
+						<% String name=(String)session.getAttribute("errorLogin");
+						if (name!=null)
+							out.print(name);	
+							session.removeAttribute("errorLogin");												
+						%>
 						<br>
 						<div class="form-group">
 							<a href="/GoogleSignupProject/RegistrationPage.jsp">Create
