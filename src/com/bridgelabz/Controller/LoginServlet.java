@@ -81,7 +81,7 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("errorLogin",errorMsg);
 				//out.print("<p style=\"color:red\">Enter proper username and password !!!</p>");
 				RequestDispatcher requestDipatcher = request.getRequestDispatcher("index.jsp");
-				requestDipatcher.include(request, response);
+				requestDipatcher.forward(request, response);
 			}
 		}
 		out.close();

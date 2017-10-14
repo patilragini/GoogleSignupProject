@@ -31,6 +31,7 @@ public class LogoutServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.sendRedirect("index.jsp");
 	}
 
 	/**
@@ -43,8 +44,10 @@ public class LogoutServlet extends HttpServlet {
 		HttpSession sessionExpire = request.getSession();
 		sessionExpire.invalidate();
 		//System.out.println("\n expired session" + sessionExpire);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
-		requestDispatcher.include(request, response);
+		/*RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
+		requestDispatcher.forward(request, response);*/
+		
+		response.sendRedirect("index.jsp");
 	}
 
 }
