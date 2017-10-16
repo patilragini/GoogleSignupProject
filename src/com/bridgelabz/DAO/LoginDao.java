@@ -1,3 +1,12 @@
+/****************************************************************************** 
+ *  @author  Ragini Patil
+ *  @version 1.0
+ *  @since   5-10-2017
+ *	@purpose LoginDao is class responsible for Database related operations
+ *			 while loging in.
+ *			
+ *			 
+ ******************************************************************************/
 package com.bridgelabz.DAO;
 
 import java.sql.Connection;

@@ -21,13 +21,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.bridgelabz.DAO.LoginDao;
+
 
 /**
  * Servlet implementation class LoginServlet
  */
 // @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
+	private static Logger logger = LoggerFactory.getLogger(LoginServlet.class);
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -42,7 +47,8 @@ public class LoginServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
-	 *      <p> this   
+	 *      <p>
+	 *      this
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -55,34 +61,42 @@ public class LoginServlet extends HttpServlet {
 
 			String email = request.getParameter("email");
 			String password = request.getParameter("userpass");
-			
+
 			/*
 			 * getSession(false) will check existence of session. If session
 			 * exists, then it returns the reference of that session object, if
 			 * not, this methods will return null.
 			 */
 			HttpSession session = request.getSession();
-			//System.out.println("session  " + session);
+			// System.out.println("session " + session);
 			// set new session by name object
 			if (session != null) {
 				session.setAttribute("email", email);
-				
 			}
-			String nameResult=LoginDao.validate(email, password);
-			
-			session.setAttribute("name",nameResult);
-			if (nameResult!=null) {	
-				session.removeAttribute("errorLogin");	
+
+			String nameResult = LoginDao.validate(email, password);
+
+			session.setAttribute("name", nameResult);
+
+			if (nameResult != null) {
+			logger.info("Success login");
+				session.removeAttribute("errorLogin");
+				logger.info("Login access  successfull");
 				RequestDispatcher requestDipatcher = request.getRequestDispatcher("welcome.jsp");
 				requestDipatcher.forward(request, response);
-				
 			} else {
-				String errorMsg="Invalid username or password !!!";
-				session.setAttribute("errorLogin",errorMsg);
-				//out.print("<p style=\"color:red\">Enter proper username and password !!!</p>");
+				String errorMsg = "Invalid username or password !!!";
+				session.setAttribute("errorLogin", errorMsg);
+			logger.error("Error invalid username password ");
+				// out.print("<p style=\"color:red\">Enter proper username and
+				// password !!!</p>");
 				RequestDispatcher requestDipatcher = request.getRequestDispatcher("index.jsp");
 				requestDipatcher.forward(request, response);
 			}
+		}
+		else{
+			RequestDispatcher requestDipatcher = request.getRequestDispatcher("index.jsp");
+			requestDipatcher.forward(request, response);
 		}
 		out.close();
 	}

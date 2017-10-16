@@ -18,13 +18,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Servlet implementation class LogoutServlet
  */
 // @WebServlet("/LogoutServlet")
 public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private static Logger logger = LoggerFactory.getLogger(LogoutServlet.class);
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -46,7 +49,7 @@ public class LogoutServlet extends HttpServlet {
 		//System.out.println("\n expired session" + sessionExpire);
 		/*RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
 		requestDispatcher.forward(request, response);*/
-		
+		logger.info("logout sucessfull");
 		response.sendRedirect("index.jsp");
 	}
 

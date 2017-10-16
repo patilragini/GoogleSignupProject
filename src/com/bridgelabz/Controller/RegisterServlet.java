@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
 
 import com.bridgelabz.Component.Registration;
 import com.bridgelabz.DAO.RegisterDao;
-import com.bridgelabz.program.Checker;
+import com.bridgelabz.Validator.Checker;
 
 /**
  * Servlet implementation class RegisterServlet
@@ -70,17 +70,16 @@ public class RegisterServlet extends HttpServlet {
 			registration.setEmail(email);
 
 			String error1 = Checker.checkName(name);
-			//session.setAttribute("error1", error1);
+			// session.setAttribute("error1", error1);
 			String error2 = Checker.checkemail(email);
-			//session.setAttribute("error2", error2);
+			// session.setAttribute("error2", error2);
 			String error3 = Checker.checkphoneNumber(phoneNumber);
-			//session.setAttribute("error3", error3);
+			// session.setAttribute("error3", error3);
 			String error4 = Checker.checkpassword(password);
-			//session.setAttribute("error4", error4);
-			
-			
-			
-			System.out.println("ERROR:" + error1 + "|| " + error2 + "|| " + error3 + " ||" + error4);
+			// session.setAttribute("error4", error4);
+
+			// System.out.println("ERROR:" + error1 + "|| " + error2 + "|| " +
+			// error3 + " ||" + error4);
 
 			// String patternStatus = Checker.checkData(name, password,
 			// phoneNumber, email);
@@ -88,7 +87,7 @@ public class RegisterServlet extends HttpServlet {
 			// session.setAttribute("error", patternStatus);
 			// if (patternStatus == "valid") {
 			if (error1 == "valid" && error2 == "valid" && error3 == "valid" && error4 == "valid") {
-				System.out.println("in if");
+				// System.out.println("in if");
 				try {
 					status = RegisterDao.register(registration);
 				} catch (ClassNotFoundException e) {
@@ -113,7 +112,7 @@ public class RegisterServlet extends HttpServlet {
 					requestDipatcher.forward(request, response);
 				}
 			} else {
-				System.out.println("in else @@@@");
+			//	System.out.println("in else @@@@");
 				if (error1 != "valid")
 					session.setAttribute("error1", "Invalid name");
 				if (error2 != "valid")
@@ -130,9 +129,11 @@ public class RegisterServlet extends HttpServlet {
 				 * session.setAttribute("Invalid password",error4);
 				 */
 
-				System.out.println("@@" + session.getAttribute(error1));
-				System.out.println("@@" + session.getAttribute(error3));
-				System.out.println("@@" + session.getAttribute(error4));
+				/*
+				 * System.out.println("@@" + session.getAttribute(error1));
+				 * System.out.println("@@" + session.getAttribute(error3));
+				 * System.out.println("@@" + session.getAttribute(error4));
+				 */
 
 				response.setContentType("text/html");
 				PrintWriter out = response.getWriter();

@@ -19,5 +19,7 @@
 	<classpathentry kind="lib" path="/home/bridgeit/jars/mysql-connector.jar.zip"/>
 	<classpathentry kind="lib" path="/home/bridgeit/jars/json-simple-1.1.1.jar"/>
 	<classpathentry kind="lib" path="/home/bridgeit/jars/servlet-api.jar"/>
+	<classpathentry kind="lib" path="/home/bridgeit/jars/slf4j-1.8.0-alpha2/slf4j-simple-1.8.0-alpha2.jar" sourcepath="/tmp/.org.sf.feeling.decompiler1507779029758/source/slf4j-simple-1.8.0-alpha2-sources.jar"/>
+	<classpathentry kind="lib" path="/home/bridgeit/jars/slf4j-1.7.25/slf4j-nop-1.7.25.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
